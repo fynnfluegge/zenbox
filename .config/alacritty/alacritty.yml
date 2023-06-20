@@ -1,0 +1,17 @@
+import:
+ - ~/.config/alacritty/themes/themes/material_theme_mod.yaml
+
+window:
+  startup_mode: Maximized
+
+font:
+  normal:
+    family: Hack Nerd Font
+  size: 14.0
+
+key_bindings:
+  - { key: Right, mods: Alt,     chars: "\x1BF" }
+  - { key: Left,  mods: Alt,     chars: "\x1BB" }
+  - { key: Left,  mods: Command, chars: "\x1bOH",   mode: AppCursor   } # Home
+  - { key: Right, mods: Command, chars: "\x1bOF",   mode: AppCursor   } # End
+  - { key: Back,  mods: Command, chars: "\x15"                        } # Delete line

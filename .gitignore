@@ -1,0 +1,15 @@
+*
+
+!.gitignore
+!.zshrc
+
+!.config
+.config/*
+
+!.config/alacritty
+.config/alacritty/*
+!.config/alacritty/alacritty.yml
+
+!.config/ranger
+.config/ranger/*
+!.config/ranger/rc.conf

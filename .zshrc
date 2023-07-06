@@ -68,6 +68,8 @@ export PATH="$PATH:$HOME/Library/Python/3.9/bin"
 # Added by Docker Desktop
 source /Users/fynn/.docker/init-zsh.sh || true
 
+source "$HOME/.cargo/env"
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 

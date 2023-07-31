@@ -20,7 +20,12 @@ export ZSH="$HOME/.zsh"
 # completion cache file
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$USER
 
+# ranger preview highlight style
 export HIGHLIGHT_STYLE=dusk
+
+# ranger open file with nvim
+export VISUAL=nvim;
+export EDITOR=nvim;
 
 # ----- theme and styling ----- #
 ZSH_THEME="powerlevel10k"

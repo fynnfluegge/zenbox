@@ -17,7 +17,7 @@ alias rrconfig="f(){ rr --selectfile=$HOME/.config/ranger };f"
 
 export ZSH="$HOME/.zsh"
 
-# completion cache file
+# completion cache file path
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$USER
 
 # ranger preview highlight style

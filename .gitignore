@@ -13,3 +13,7 @@
 !.config/ranger
 .config/ranger/*
 !.config/ranger/rc.conf
+
+!.scripts
+.scripts/*
+!.scripts/fzfbookmarks.sh

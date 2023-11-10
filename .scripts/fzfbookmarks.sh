@@ -12,7 +12,7 @@ fi
 
 BOOKMARKS_FILE=""
 HOME=$(env  | grep HOME | grep -oe '[^=]*$');
-USE_CHROME=false
+USE_CHROME=true
 
 # Chrome bookmarks directory
 if [ "$(uname)" == "Darwin" ]; then
@@ -29,13 +29,17 @@ fi
 if [ ! -f "$BOOKMARKS_FILE" ]; then
   USE_CHROME=false
   if [ "$(uname)" == "Darwin" ]; then
-    BOOKMARKS_FILE="${HOME}/Library/Application Support/Firefox/Profiles/$(ls ${HOME}/Library/Application\ Support/Firefox/Profiles/ | grep default-release)/places.sqlite"
+    BOOKMARKS_DIR="${HOME}/Library/Application Support/Firefox/Profiles/"
+    BOOKMARKS_FILE="${BOOKMARKS_DIR}$(ls ${HOME}/Library/Application\ Support/Firefox/Profiles/ | grep default-release)/places.sqlite"
   elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-    BOOKMARKS_FILE="${HOME}/.mozilla/firefox/$(ls ${HOME}/.mozilla/firefox/ | grep default-release)/places.sqlite"
+    BOOKMARKS_DIR="${HOME}/.mozilla/firefox/"
+    BOOKMARKS_FILE="${BOOKMARKS_DIR}$(ls ${HOME}/.mozilla/firefox/ | grep default-release)/places.sqlite"
   elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
-    BOOKMARKS_FILE="/${HOME}AppData/Roaming/Mozilla/Firefox/Profiles/$(ls /${HOME}AppData/Roaming/Mozilla/Firefox/Profiles/ | grep default-release)/places.sqlite"
+    BOOKMARKS_DIR="/${HOME}AppData/Roaming/Mozilla/Firefox/Profiles/"
+    BOOKMARKS_FILE="/${BOOKMARKS_DIR}$(ls /${HOME}AppData/Roaming/Mozilla/Firefox/Profiles/ | grep default-release)/places.sqlite"
   elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
-    BOOKMARKS_FILE="/${HOME}AppData/Roaming/Mozilla/Firefox/Profiles/$(ls /${HOME}AppData/Roaming/Mozilla/Firefox/Profiles/ | grep default-release)/places.sqlite"
+    BOOKMARKS_DIR="/${HOME}AppData/Roaming/Mozilla/Firefox/Profiles/"
+    BOOKMARKS_FILE="/${BOOKMARKS_DIR}$(ls /${HOME}AppData/Roaming/Mozilla/Firefox/Profiles/ | grep default-release)/places.sqlite"
   fi
 fi
 
@@ -55,8 +59,8 @@ if [ "$USE_CHROME" = true ]; then
   bookmark_urls_2=$(jq '[.roots.bookmark_bar.children[] | select(.children) | .children[] | select(.children) | .children[] | select(.type == "url") | .url]' "$BOOKMARKS_FILE")
   bookmark_urls="$bookmark_urls_0 $bookmark_urls_1 $bookmark_urls_2"
 else
-  output_file="bookmarks.json"
-  temp_bookmarks_file="temp_bookmarks.sqlite"
+  output_file="${BOOKMARKS_DIR}bookmarks.json"
+  temp_bookmarks_file="${BOOKMARKS_DIR}temp_bookmarks.sqlite"
   cp "$BOOKMARKS_FILE" "$temp_bookmarks_file"
 
 sqlite3 "$temp_bookmarks_file" <<EOF > "$output_file"
@@ -69,8 +73,8 @@ JOIN moz_bookmarks b
 ON h.id = b.fk;
 EOF
 
-  bookmark_titles_0=($(jq '.[].title' bookmarks.json))
-  bookmark_urls_0=($(jq '.[].url' bookmarks.json))
+  bookmark_titles_0=($(jq '.[].title' "$output_file"))
+  bookmark_urls_0=($(jq '.[].url' "$output_file"))
 
   # Merge elements between double quotes
   merged_titles=()
@@ -97,8 +101,6 @@ EOF
   # Join array elements with newlines
   bookmark_titles=$(printf "%s\n" "${merged_titles[@]}")
   bookmark_urls=$(printf "%s\n" "${bookmark_urls_0[@]}")
-
-  find . -name "temp_bookmarks.*" -exec rm {} \;
 fi
 
 # Split the double quoted elements string into an array

@@ -158,12 +158,8 @@ EOF
     BOOKMARK_URLS_LASTMODIFIED=$(stat -c "%Y" "$BOOKMARK_URLS")
   fi
 
-  # If the bookmarks file is older than the cache, use the cache
-  if [[ "$BOOKMARKS_FILE_LASTMODIFIED" < "$BOOKMARK_TITLES_LASTMODIFIED" || "$BOOKMARKS_FILE_LASTMODIFIED" < "$BOOKMARK_URLS_LASTMODIFIED" ]]; then
-    bookmark_titles="$(<"$BOOKMARK_TITLES")"
-    bookmark_urls=$(<"$BOOKMARK_URLS")
-  # else, update the cache
-  else
+  # If the bookmarks file is newer than the cache, update the cache
+  if [[ "$BOOKMARKS_FILE_LASTMODIFIED" > "$BOOKMARK_TITLES_LASTMODIFIED" || "$BOOKMARKS_FILE_LASTMODIFIED" > "$BOOKMARK_URLS_LASTMODIFIED" ]]; then
     save_bookmarks_to_cache
   fi
 # Initialize the cache
@@ -171,31 +167,45 @@ else
   save_bookmarks_to_cache
 fi
 
+bookmark_titles="$(<"$BOOKMARK_TITLES")"
+bookmark_urls=$(<"$BOOKMARK_URLS")
+
+IFS='"' read -a arr <<EOF
+$bookmark_titles
+EOF
+
+bookmarks=()
+for item in "${arr[@]}"; do
+  if [[ -z "$item" || "$item" == $'\n' ]]; then
+    continue
+  fi
+  case "$item" in
+    '[ '|', '|' ]'|' ] [ '|' ] []'|' ') continue;;
+    *) 
+      bookmarks+=("$item")
+    ;;
+  esac
+done
+
 # Split the double quoted elements string into an array
-bookmark_matches="$(echo "$bookmark_titles" | grep -o '"[^",]\+"' || echo "$bookmark_titles" | grep -o '[^, ]\+')
-"
 url_matches="$(echo "$bookmark_urls" | grep -o '"[^"]\+"' || echo "$bookmark_urls" | grep -o '[^, ]\+')
 "
 
-# echo "bookmark_matches: $bookmark_matches"
-
 # Use sed to remove double quotes and any leading/trailing spaces
-bookmark_result=$(echo "$bookmark_matches" | sed 's/"//g; s/^ *//; s/ *$//')
 url_result=$(echo "$url_matches" | sed 's/"//g; s/^ *//; s/ *$//')
 
 # Use fzf for fuzzy searching
-selected_title=$(printf "%s\n" "${bookmark_result[@]}" | fzf --preview "open {}" --preview-window=up:0%:wrap)
+selected_title=$(printf "%s\n" "${bookmarks[@]}" | fzf --preview "open {}" --preview-window=up:0%:wrap)
 
 # Convert the formatted string to an array
 SAVEIFS=$IFS   # Save current IFS (Internal Field Separator)
 IFS=$'\n'      # Change IFS to newline char
-bookmark_names=($bookmark_result) # split the string into an array
 bookmark_urls=($url_result) # split the string into an array
 IFS=$SAVEIFS   # Restore original IFS
 
 # Find the URL corresponding to the selected title
-for i in "${!bookmark_names[@]}"; do
-  if [ "${bookmark_names[i]}" = "$selected_title" ]; then
+for i in "${!bookmarks[@]}"; do
+  if [ "${bookmarks[i]}" = "$selected_title" ]; then
     selected_url="${bookmark_urls[i]}"
     break
   fi

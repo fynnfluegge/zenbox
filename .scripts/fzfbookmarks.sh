@@ -158,13 +158,8 @@ EOF
     BOOKMARK_URLS_LASTMODIFIED=$(stat -c "%Y" "$BOOKMARK_URLS")
   fi
 
-  echo "timestamp_file1: $BOOKMARKS_FILE_LASTMODIFIED"
-  echo "timestamp_file2: $BOOKMARK_TITLES_LASTMODIFIED"
-  echo "timestamp_file3: $BOOKMARK_URLS_LASTMODIFIED"
-
   # If the bookmarks file is older than the cache, use the cache
   if [[ "$BOOKMARKS_FILE_LASTMODIFIED" < "$BOOKMARK_TITLES_LASTMODIFIED" || "$BOOKMARKS_FILE_LASTMODIFIED" < "$BOOKMARK_URLS_LASTMODIFIED" ]]; then
-    echo "Using cache"
     bookmark_titles="$(<"$BOOKMARK_TITLES")"
     bookmark_urls=$(<"$BOOKMARK_URLS")
   # else, update the cache
@@ -175,8 +170,6 @@ EOF
 else
   save_bookmarks_to_cache
 fi
-
-# echo "bookmark_titles: $bookmark_titles"
 
 # Split the double quoted elements string into an array
 bookmark_matches="$(echo "$bookmark_titles" | grep -o '"[^",]\+"' || echo "$bookmark_titles" | grep -o '[^, ]\+')

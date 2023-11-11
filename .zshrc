@@ -10,11 +10,12 @@ fi
 
 # aliases
 alias vz="nvim ~/.zshrc"
+alias sz="source ~/.zshrc"
 alias nv="nvim"
 alias rr="ranger"
 alias rrzsh="f(){ rr --selectfile=$HOME/.zsh/.git };f"
 alias rrconfig="f(){ rr --selectfile=$HOME/.config/ranger };f"
-alias fzfbookmarks=$HOME/.scripts/fzfbookmarks.sh
+alias fb=$HOME/.scripts/fzfbookmarks.sh
 
 export ZSH="$HOME/.zsh"
 

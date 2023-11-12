@@ -1,3 +1,5 @@
+# millis=$(gdate +%s%N)
+
 # Check fzf is installed
 if ! command -v fzf &> /dev/null; then
     echo "fzf not found. Please install fzf."
@@ -187,26 +189,33 @@ for item in "${arr[@]}"; do
   esac
 done
 
-# Split the double quoted elements string into an array
-url_matches="$(echo "$bookmark_urls" | grep -o '"[^"]\+"' || echo "$bookmark_urls" | grep -o '[^, ]\+')
-"
 
-# Use sed to remove double quotes and any leading/trailing spaces
-url_result=$(echo "$url_matches" | sed 's/"//g; s/^ *//; s/ *$//')
+# echo "time taken: $(($(gdate +%s%N) - $millis))"
 
 # Use fzf for fuzzy searching
 selected_title=$(printf "%s\n" "${bookmarks[@]}" | fzf --preview "open {}" --preview-window=up:0%:wrap)
 
-# Convert the formatted string to an array
-SAVEIFS=$IFS   # Save current IFS (Internal Field Separator)
-IFS=$'\n'      # Change IFS to newline char
-bookmark_urls=($url_result) # split the string into an array
-IFS=$SAVEIFS   # Restore original IFS
+IFS='"' read -a arr <<EOF
+$bookmark_urls
+EOF
+
+urls=()
+for item in "${arr[@]}"; do
+  if [[ -z "$item" || "$item" == $'\n' ]]; then
+    continue
+  fi
+  case "$item" in
+    '[ '|', '|' ]'|' ] [ '|' ] []'|' ') continue;;
+    *) 
+      urls+=("$item")
+    ;;
+  esac
+done
 
 # Find the URL corresponding to the selected title
 for i in "${!bookmarks[@]}"; do
   if [ "${bookmarks[i]}" = "$selected_title" ]; then
-    selected_url="${bookmark_urls[i]}"
+    selected_url="${urls[i]}"
     break
   fi
 done

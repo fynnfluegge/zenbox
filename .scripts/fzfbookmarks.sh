@@ -193,7 +193,7 @@ done
 # echo "time taken: $(($(gdate +%s%N) - $millis))"
 
 # Use fzf for fuzzy searching
-selected_title=$(printf "%s\n" "${bookmarks[@]}" | fzf --preview "open {}" --preview-window=up:0%:wrap)
+selected_title=$(printf "%s\n" "${bookmarks[@]}" | fzf --preview "open {}" --height 25% --preview-window=down:0%:wrap)
 
 IFS='"' read -a arr <<EOF
 $bookmark_urls

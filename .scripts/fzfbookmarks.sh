@@ -222,13 +222,25 @@ done
 
 # Open the URL in Google Chrome
 if [[ -n "$selected_url" ]]; then
-  if [ "$(uname)" == "Darwin" ]; then
-    open -a "Google Chrome" "$selected_url"
-  elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-    google-chrome "$selected_url"
-  elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
-    start chrome "$selected_url"
-  elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
-    start chrome "$selected_url"
+  if [ "$USE_CHROME" = true ]; then
+    if [ "$(uname)" == "Darwin" ]; then
+      open -a "Google Chrome" "$selected_url"
+    elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+      google-chrome "$selected_url"
+    elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
+      start chrome "$selected_url"
+    elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
+      start chrome "$selected_url"
+    fi
+  else
+    if [ "$(uname)" == "Darwin" ]; then
+      open -a "Firefox" "$selected_url"
+    elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+      firefox "$selected_url"
+    elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
+      start firefox "$selected_url"
+    elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
+      start firefox "$selected_url"
+    fi
   fi
 fi

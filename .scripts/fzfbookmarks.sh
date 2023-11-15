@@ -12,7 +12,12 @@ if ! command -v jq &> /dev/null; then
     exit
 fi
 
-HOME=$(env  | grep HOME | grep -oe '[^=]*$');
+HOME=$(echo ~)
+
+if [ "$(uname -s)" == "MINGW32_NT" ] || [ "$(uname -s)" == "MINGW64_NT" ]; then
+  HOME=$(cmd.exe /c "echo %HOMEPATH%" | tr -d '\r')
+fi
+
 # Use Chrome bookmarks as default
 USE_CHROME=true
 

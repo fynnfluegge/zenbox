@@ -1,6 +1,3 @@
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
-
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -54,8 +51,11 @@ plugins=(
  docker-compose
  kubectl
  python
+ pyenv
+ poetry
  zsh-syntax-highlighting
  zsh-autosuggestions
+ conda-zsh-completion
 )
 # ----------------- #
 
@@ -69,16 +69,38 @@ export NVM_DIR="$HOME/.nvm"
   [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
   [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
-# add pip bin to PATH
-export PATH="$PATH:$HOME/Library/Python/3.9/bin"
-
 # Added by Docker Desktop
 source /Users/fynn/.docker/init-zsh.sh || true
-
-source "$HOME/.cargo/env"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+# only show last dir in prompt
+# function zsh_directory_name() {
+#   emulate -L zsh
+#   [[ $1 == d ]] || return
+#   while [[ $2 != / ]]; do
+#     if [[ -e $2/.git ]]; then
+#       typeset -ga reply=(${2:t} $#2)
+#       return
+#     fi
+#     2=${2:h}
+#   done
+#   return 1
+# }
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/fynn/.pyenv/versions/miniconda3-3.11-23.5.2-0/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/fynn/.pyenv/versions/miniconda3-3.11-23.5.2-0/etc/profile.d/conda.sh" ]; then
+        . "/Users/fynn/.pyenv/versions/miniconda3-3.11-23.5.2-0/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/fynn/.pyenv/versions/miniconda3-3.11-23.5.2-0/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<

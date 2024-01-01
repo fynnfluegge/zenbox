@@ -1,3 +1,7 @@
+# This only gets loaded on Login-Shell
+# .zshenv -> .zprofile -> .zshrc
+
+
 # Added by Toolbox App
 export PATH="$PATH:/usr/local/bin"
 

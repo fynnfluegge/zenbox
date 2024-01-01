@@ -15,6 +15,10 @@
 .config/ranger/*
 !.config/ranger/rc.conf
 
+!.config/iterm2
+.config/iterm2/*
+!.config/iterm2/com.googlecode.iterm2.plist
+
 !.scripts
 .scripts/*
 !.scripts/fzfbookmarks.sh

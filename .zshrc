@@ -9,6 +9,7 @@ fi
 alias vz="nvim ~/.zshrc"
 alias sz="source ~/.zshrc"
 alias nv="nvim"
+# alias rr="pipx run --spec ranger-fm ranger"
 alias rr="ranger"
 alias rrzsh="f(){ rr --selectfile=$HOME/.zsh/.git };f"
 alias rrconfig="f(){ rr --selectfile=$HOME/.config/ranger };f"

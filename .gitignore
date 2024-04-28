@@ -3,6 +3,7 @@
 !.gitignore
 !.zshrc
 !.zprofile
+!.tmux.conf.local
 
 !.config
 .config/*

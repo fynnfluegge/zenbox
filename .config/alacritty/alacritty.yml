@@ -8,6 +8,8 @@ window:
 colors:
   primary:
     background: "0x002833"
+  cursor:
+    cursor: "#33ee33"
 font:
   normal:
     family: Hack Nerd Font

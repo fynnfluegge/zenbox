@@ -15,6 +15,12 @@
 !.config/alacritty
 .config/alacritty/*
 !.config/alacritty/alacritty.yml
+!.config/alacritty/themes
+.config/alacritty/themes/*
+!.config/alacritty/themes/themes
+.config/alacritty/themes/themes/*
+!.config/alacritty/themes/themes/github_dark.yaml
+!.config/alacritty/themes/themes/github_dark.toml
 
 !.config/ranger
 .config/ranger/*

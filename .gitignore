@@ -3,10 +3,14 @@
 !.gitignore
 !.zshrc
 !.zprofile
-!.tmux.conf.local
+!Dockerfile
 
 !.config
 .config/*
+
+!.config/tmux
+.config/tmux/*
+!.config/tmux/tmux.conf
 
 !.config/alacritty
 .config/alacritty/*

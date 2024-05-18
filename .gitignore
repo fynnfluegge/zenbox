@@ -3,7 +3,11 @@
 !.gitignore
 !.zshrc
 !.zprofile
-!Dockerfile
+!.p10k.zsh
+
+!build
+build/*
+!build/Dockerfile
 
 !.config
 .config/*

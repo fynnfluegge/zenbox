@@ -3,11 +3,11 @@ import:
 
 window:
   startup_mode: Maximized
-  opacity: 0.9
+  opacity: 1.0
 
 colors:
   primary:
-    background: "0x002833"
+    background: "#1a1f2b"
   cursor:
     cursor: "#33ee33"
 font:

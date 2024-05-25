@@ -5,6 +5,7 @@
 !.zprofile
 !.p10k.zsh
 !Dockerfile
+!README.md
 
 !.config
 .config/*

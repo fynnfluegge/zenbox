@@ -16,6 +16,7 @@ alias rrconfig="f(){ rr --selectfile=$HOME/.config/ranger };f"
 alias fb=$HOME/.scripts/fzfbookmarks.sh
 
 export ZSH="$HOME/.zsh"
+export ZSH_CUSTOM="$ZSH/custom"
 
 # completion cache file path
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$USER
@@ -28,7 +29,17 @@ export VISUAL=nvim;
 export EDITOR=nvim;
 
 # ----- theme and styling ----- #
-ZSH_THEME="powerlevel10k"
+P10K_PATH="$HOME/.p10k.zsh"
+# Check if the p10k.zsh file exists
+if [[ -f $P10K_PATH ]]; then
+    # If the file exists, source it
+    source $P10K_PATH
+    # Set the ZSH theme to powerlevel10k
+    ZSH_THEME="powerlevel10k/powerlevel10k"
+else
+    # If the file does not exist, set a different theme
+    ZSH_THEME="awesomepanda"
+fi
 
 typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=10,bold
@@ -63,18 +74,26 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -f $HOME/.p10k.zsh ]] || source $HOME/.p10k.zsh
 
-# nvm plugin
-export NVM_DIR="$HOME/.nvm"
-  [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
-# Added by Docker Desktop
-source /Users/fynn/.docker/init-zsh.sh || true
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$("$HOME/.pyenv/versions/miniconda3-3.11-23.5.2-0/bin/conda" "shell.zsh" "hook" 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "$HOME/.pyenv/versions/miniconda3-3.11-23.5.2-0/etc/profile.d/conda.sh" ]; then
+        . "$HOME/.pyenv/versions/miniconda3-3.11-23.5.2-0/etc/profile.d/conda.sh"
+    else
+        export PATH="$HOME/.pyenv/versions/miniconda3-3.11-23.5.2-0/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
 
 # only show last dir in prompt
 # function zsh_directory_name() {
@@ -89,19 +108,3 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 #   done
 #   return 1
 # }
-
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/fynn/.pyenv/versions/miniconda3-3.11-23.5.2-0/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/fynn/.pyenv/versions/miniconda3-3.11-23.5.2-0/etc/profile.d/conda.sh" ]; then
-        . "/Users/fynn/.pyenv/versions/miniconda3-3.11-23.5.2-0/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/fynn/.pyenv/versions/miniconda3-3.11-23.5.2-0/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<

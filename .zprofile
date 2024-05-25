@@ -10,11 +10,18 @@ export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
 
+# Load NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 
-source "$HOME/.cargo/env"
+[ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
 
 # Created by `pipx` on 2023-12-10 18:10:42
 export PATH="$PATH:$HOME/.local/bin"
+
+# Added by Docker Desktop
+[ -f $HOME/.docker/init-zsh.sh ] && source $HOME/.docker/init-zsh.sh || true

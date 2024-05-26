@@ -68,6 +68,7 @@ plugins=(
  zsh-syntax-highlighting
  zsh-autosuggestions
  conda-zsh-completion
+ zsh-vi-mode
 )
 # ----------------- #
 

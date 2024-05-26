@@ -9,7 +9,7 @@ docker build -t my-dev-environment .
 #### Start docker container
 
 ```
-docker run -it --name dev-container my-dev-environment
+docker run --privileged -it -p 2375:2375 --name dev-container my-dev-environment
 ```
 
 #### Reconnect to docker container

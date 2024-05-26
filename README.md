@@ -1,3 +1,14 @@
+### Tools
+
+- [tmux](https://github.com/tmux/tmux)
+- [neovim](https://github.com/neovim/neovim)
+- [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
+- [lazygit](https://github.com/jesseduffield/lazygit)
+- [lazydocker](https://github.com/jesseduffield/lazydocker)
+- [ranger](https://github.com/ranger/ranger)
+- [pyenv](https://github.com/pyenv/pyenv)
+- [nvm](https://github.com/nvm-sh/nvm)
+
 ### Run dev environment with docker
 
 #### Build docker image

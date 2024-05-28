@@ -8,7 +8,6 @@ ENV ZSH_CUSTOM $ZSH/custom
 ENV PYTHON_VERSION 3.11.5
 ENV NODE_VERSION 20
 
-# Install necessary packages including curl, git, and Neovim
 RUN apt-get update && apt-get install -y \
     curl \
     git \
@@ -21,7 +20,6 @@ RUN apt-get update && apt-get install -y \
     jq \
     sudo
 
-# Install additional CLI tools
 RUN apt-get update && apt-get install -y \
     htop \
     tree \
@@ -62,11 +60,6 @@ RUN git clone https://github.com/fynnfluegge/nvim.config $HOME/.config/nvim
 RUN chsh -s $(which zsh)
 SHELL ["/bin/zsh", "-c"]
 
-# Copu dotfiles to the container
-COPY .config $HOME/.config
-COPY .scripts $HOME/.scripts
-COPY .zshrc $HOME/.zshrc
-COPY .zprofile $HOME/.zprofile
 
 # Install Oh My Zsh with plugins
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -85,9 +78,16 @@ RUN curl https://pyenv.run | zsh
 # Install nvm
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 
+# Add dotfiles
+COPY .config $HOME/.config
+COPY .scripts $HOME/.scripts
+COPY .zshrc $HOME/.zshrc
+COPY .zprofile $HOME/.zprofile
+
 # Install Python and set the global version to $PYTHON_VERSION
 RUN source $HOME/.zprofile && pyenv install $PYTHON_VERSION && pyenv global $PYTHON_VERSION
 
+# Install Node and set the global version to $NODE_VERSION
 RUN source $HOME/.zprofile && nvm install $NODE_VERSION && nvm use $NODE_VERSION
 
 # Ensure pip is installed and upgrade it

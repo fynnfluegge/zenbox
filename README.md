@@ -1,4 +1,10 @@
-### Tools
+
+<div align="center">
+  <img width="640" src="https://github.com/fynnfluegge/zendevenv/assets/16321871/4ea2ecb5-d186-4b54-bef3-879b40fc7587">
+</div>
+
+
+## Tools
 
 - [tmux](https://github.com/tmux/tmux)
 - [neovim](https://github.com/neovim/neovim)
@@ -10,7 +16,7 @@
 - [pyenv](https://github.com/pyenv/pyenv)
 - [nvm](https://github.com/nvm-sh/nvm)
 
-### Run dev environment with docker
+## Run dev environment with docker
 
 #### Build docker image
 

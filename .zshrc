@@ -14,6 +14,7 @@ alias rr="ranger"
 alias rrzsh="f(){ rr --selectfile=$HOME/.zsh/.git };f"
 alias rrconfig="f(){ rr --selectfile=$HOME/.config/ranger };f"
 alias fb=$HOME/.scripts/fzfbookmarks.sh
+alias ls="eza --icons=always"
 
 export ZSH="$HOME/.zsh"
 export ZSH_CUSTOM="$ZSH/custom"

@@ -5,26 +5,28 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV HOME /root
 ENV ZSH $HOME/.zsh
 ENV ZSH_CUSTOM $ZSH/custom
-ENV PYTHON_VERSION 3.11.5
+ENV PYTHON_VERSION 3.12
 ENV NODE_VERSION 20
 
 RUN apt-get update && apt-get install -y \
     curl \
     git \
-    neovim \
-    zsh \
     build-essential \
     wget \
     unzip \
     tar \
-    jq \
-    sudo
-
-RUN apt-get update && apt-get install -y \
+    sudo \
     htop \
     tree \
+    gpg
+
+RUN apt-get update && apt-get install -y \
     tmux \
-    fzf
+    fzf \
+    neovim \
+    zsh \
+    jq \
+    bat
 
 RUN apt-get update && apt-get install -y \
     libssl-dev \
@@ -50,32 +52,26 @@ RUN apt-get update && apt-get install -y \
     gnupg \
     lsb-release
 
-RUN apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
-
-# Clone your Neovim configuration from GitHub
+# Clone Neovim configuration from GitHub
 RUN git clone https://github.com/fynnfluegge/nvim.config $HOME/.config/nvim
 
 # Change the default shell to zsh for the root user
 RUN chsh -s $(which zsh)
 SHELL ["/bin/zsh", "-c"]
 
-
-# Install Oh My Zsh with plugins
+# ------------------- Install Oh My Zsh ------------------- #
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
+# Download plugins
 RUN git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 RUN git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 RUN git clone https://github.com/conda-incubator/conda-zsh-completion ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/conda-zsh-completion
 RUN git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH_CUSTOM/plugins/zsh-vi-mode
 
-# Install tpm
-RUN git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
 
-# Install pyenv
+# ------------------- Install pyenv ------------------- #
 RUN curl https://pyenv.run | zsh
 
-# Install nvm
+# ------------------- Install nvm ------------------- #
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 
 # Add dotfiles
@@ -83,6 +79,29 @@ COPY .config $HOME/.config
 COPY .scripts $HOME/.scripts
 COPY .zshrc $HOME/.zshrc
 COPY .zprofile $HOME/.zprofile
+
+# ---------------- Install tmux ---------------- #
+# Download tmux plugin manager
+RUN git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
+
+# Add tmux configuration file
+RUN echo 'set -g @plugin "tmux-plugins/tpm"' >> $HOME/.tmux.conf && \
+    echo 'set -g @plugin "tmux-plugins/tmux-sensible"' >> $HOME/.tmux.conf && \
+    echo 'run -b "$HOME/.tmux/plugins/tpm/tpm"' >> $HOME/.tmux.conf && \
+    echo 'source-file $HOME/.config/tmux/tmux.conf' >> $HOME/.tmux.conf
+
+# Script to start tmux and install plugins
+RUN echo '#!/bin/bash\n' > install_plugins.sh && \
+    echo 'tmux new-session -d -s install_tmux_plugins' >> install_plugins.sh && \
+    echo 'sleep 1' >> install_plugins.sh && \
+    echo '$HOME/.tmux/plugins/tpm/bin/install_plugins' >> install_plugins.sh && \
+    echo 'tmux kill-session -t install_tmux_plugins' >> install_plugins.sh && \
+    chmod +x install_plugins.sh
+
+# Run and delete the tmux plugin install script
+RUN ./install_plugins.sh
+RUN rm ./install_plugins.sh
+# ----------------------------------------------- #
 
 # Install Python and set the global version to $PYTHON_VERSION
 RUN source $HOME/.zprofile && pyenv install $PYTHON_VERSION && pyenv global $PYTHON_VERSION
@@ -99,7 +118,34 @@ RUN pipx ensurepath
 # Install Ranger using pipx
 RUN pipx install ranger-fm
 
-# Fetch and install the latest version of LazyDocker
+# Install Rust and Cargo
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+
+# ------------------- Install eza ------------------- #
+# Create the keyrings directory and download the GPG key
+RUN mkdir -p /etc/apt/keyrings \
+    && curl -fsSL https://raw.githubusercontent.com/eza-community/eza/main/deb.asc \
+    | gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
+
+# Add the eza repository
+RUN echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | tee /etc/apt/sources.list.d/gierens.list
+
+# Set the correct permissions
+RUN chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
+
+# Update the package list and install eza
+RUN apt-get update && apt-get install -y eza
+
+# ------------------- Install delta ------------------- #
+# Download and install delta
+RUN source $HOME/.cargo/env \
+    && git clone https://github.com/dandavison/delta.git /tmp/delta \
+    && cd /tmp/delta \
+    && cargo build --release \
+    && cp target/release/delta /usr/local/bin/ \
+    && rm -rf /tmp/delta
+
+# ------------------- Install LazyDocker ------------------- #
 RUN LAZYDOCKER_VERSION=$(curl -s https://api.github.com/repos/jesseduffield/lazydocker/releases/latest | \
     jq -r '.tag_name' | \
     sed 's/^v//') \
@@ -108,7 +154,7 @@ RUN LAZYDOCKER_VERSION=$(curl -s https://api.github.com/repos/jesseduffield/lazy
     && mv lazydocker /usr/local/bin/ \
     && rm lazydocker.tar.gz
 
-# Fetch and install the latest version of LazyGit
+# ------------------- Install LazyGit ------------------- #
 RUN LAZYGIT_VERSION=$(curl -s https://api.github.com/repos/jesseduffield/lazygit/releases/latest | \
     jq -r '.tag_name' | \
     sed 's/^v//') \
@@ -117,6 +163,7 @@ RUN LAZYGIT_VERSION=$(curl -s https://api.github.com/repos/jesseduffield/lazygit
     && mv lazygit /usr/local/bin/ \
     && rm lazygit.tar.gz
 
+# ------------------- Install Docker ------------------- #
 # Add Docker’s official GPG key and set up the stable repository
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
     && add-apt-repository \
@@ -131,23 +178,9 @@ RUN apt-get update && apt-get install -y \
     containerd.io \
     && rm -rf /var/lib/apt/lists/*
 
-# Add tmux configuration file
-RUN echo 'set -g @plugin "tmux-plugins/tpm"' >> ~/.tmux.conf && \
-    echo 'set -g @plugin "tmux-plugins/tmux-sensible"' >> ~/.tmux.conf && \
-    echo 'run -b "~/.tmux/plugins/tpm/tpm"' >> ~/.tmux.conf && \
-    echo 'source-file ~/.config/tmux/tmux.conf' >> ~/.tmux.conf
 
-# Script to start tmux and install plugins
-RUN echo '#!/bin/bash\n' > install_plugins.sh && \
-    echo 'tmux new-session -d -s install_tmux_plugins' >> install_plugins.sh && \
-    echo 'sleep 1' >> install_plugins.sh && \
-    echo '~/.tmux/plugins/tpm/bin/install_plugins' >> install_plugins.sh && \
-    echo 'tmux kill-session -t install_tmux_plugins' >> install_plugins.sh && \
-    chmod +x install_plugins.sh
-
-# Run and delete the tmux plugin install script
-RUN ./install_plugins.sh
-RUN rm ./install_plugins.sh
+# Clean up to reduce image size
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Expose Docker daemon port
 EXPOSE 2375

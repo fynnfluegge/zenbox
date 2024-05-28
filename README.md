@@ -3,6 +3,7 @@
 - [tmux](https://github.com/tmux/tmux)
 - [neovim](https://github.com/neovim/neovim)
 - [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
+- [fzf](https://github.com/junegunn/fzf)
 - [lazygit](https://github.com/jesseduffield/lazygit)
 - [lazydocker](https://github.com/jesseduffield/lazydocker)
 - [ranger](https://github.com/ranger/ranger)

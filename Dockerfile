@@ -52,12 +52,28 @@ RUN apt-get update && apt-get install -y \
     gnupg \
     lsb-release
 
-# Clone Neovim configuration from GitHub
-RUN git clone https://github.com/fynnfluegge/nvim.config $HOME/.config/nvim
-
 # Change the default shell to zsh for the root user
 RUN chsh -s $(which zsh)
 SHELL ["/bin/zsh", "-c"]
+
+# ------------------- Install Docker ------------------- #
+# Add Docker’s official GPG key and set up the stable repository
+RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
+    && add-apt-repository \
+    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+    $(lsb_release -cs) \
+    stable"
+
+# Install Docker
+RUN apt-get update && apt-get install -y \
+    docker-ce \
+    docker-ce-cli \
+    containerd.io \
+    && rm -rf /var/lib/apt/lists/*
+# -------------------------------------------------------- #
+
+# Clone Neovim configuration from GitHub
+RUN git clone https://github.com/fynnfluegge/nvim.config $HOME/.config/nvim
 
 # ------------------- Install Oh My Zsh ------------------- #
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -67,18 +83,23 @@ RUN git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUS
 RUN git clone https://github.com/conda-incubator/conda-zsh-completion ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/conda-zsh-completion
 RUN git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH_CUSTOM/plugins/zsh-vi-mode
 
-
-# ------------------- Install pyenv ------------------- #
-RUN curl https://pyenv.run | zsh
-
-# ------------------- Install nvm ------------------- #
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-
 # Add dotfiles
 COPY .config $HOME/.config
 COPY .scripts $HOME/.scripts
 COPY .zshrc $HOME/.zshrc
 COPY .zprofile $HOME/.zprofile
+
+# ------------------- Install pyenv ------------------- #
+RUN curl https://pyenv.run | zsh
+# Check if pyenv-virtualenv is installed and install if not
+RUN zsh -c 'source $HOME/.zprofile && pyenv virtualenvs' || \
+    (git clone https://github.com/pyenv/pyenv-virtualenv.git $PYENV_ROOT/plugins/pyenv-virtualenv && \
+    zsh -c 'source $HOME/.zprofile && pyenv virtualenvs')
+# Verify installation
+RUN zsh -c 'source $HOME/.zprofile && pyenv --version && pyenv virtualenvs'
+
+# ------------------- Install nvm ------------------- #
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 
 # ---------------- Install tmux ---------------- #
 # Download tmux plugin manager
@@ -106,6 +127,26 @@ RUN rm ./install_plugins.sh
 # Install Python and set the global version to $PYTHON_VERSION
 RUN source $HOME/.zprofile && pyenv install $PYTHON_VERSION && pyenv global $PYTHON_VERSION
 
+# ------------------- Install Miniforge ------------------- #
+# Detect architecture and download the corresponding Miniforge installer
+RUN ARCH=$(uname -m) && \
+    if [ "$ARCH" = "x86_64" ]; then \
+        MINIFORGE_URL="https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh"; \
+    elif [ "$ARCH" = "aarch64" ]; then \
+        MINIFORGE_URL="https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh"; \
+    else \
+        echo "Unsupported architecture: $ARCH"; exit 1; \
+    fi && \
+    wget $MINIFORGE_URL -O Miniforge3-Linux.sh && \
+    bash Miniforge3-Linux.sh -b -p /opt/conda && \
+    rm Miniforge3-Linux.sh
+
+# Ensure conda is initialized in the current shell
+RUN /bin/zsh -c "/opt/conda/bin/conda init zsh"
+# Update Conda
+RUN /bin/zsh -c "source /opt/conda/bin/activate && conda update -n base -c conda-forge conda -y"
+# -------------------------------------------------------- #
+
 # Install Node and set the global version to $NODE_VERSION
 RUN source $HOME/.zprofile && nvm install $NODE_VERSION && nvm use $NODE_VERSION
 
@@ -114,6 +155,9 @@ RUN pip3 install --upgrade pip --break-system-packages
 
 # Ensure pipx is installed
 RUN pipx ensurepath
+
+# Install Poetry using pipx
+RUN pipx install poetry
 
 # Install Ranger using pipx
 RUN pipx install ranger-fm
@@ -162,22 +206,6 @@ RUN LAZYGIT_VERSION=$(curl -s https://api.github.com/repos/jesseduffield/lazygit
     && tar -xf lazygit.tar.gz \
     && mv lazygit /usr/local/bin/ \
     && rm lazygit.tar.gz
-
-# ------------------- Install Docker ------------------- #
-# Add Docker’s official GPG key and set up the stable repository
-RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
-    && add-apt-repository \
-    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-    $(lsb_release -cs) \
-    stable"
-
-# Install Docker
-RUN apt-get update && apt-get install -y \
-    docker-ce \
-    docker-ce-cli \
-    containerd.io \
-    && rm -rf /var/lib/apt/lists/*
-
 
 # Clean up to reduce image size
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*

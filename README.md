@@ -7,20 +7,23 @@
 ## Tools
 
 - [tmux](https://github.com/tmux/tmux)
+  - [tpm](https://github.com/tmux-plugins/tpm)
+  - [tmux-resurrect](https://github.com/tmux-plugins/tmux-resurrect)
+  - [tmux-vim-navigator](https://github.com/christoomey/vim-tmux-navigator)
 - [neovim](https://github.com/neovim/neovim)
 - [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
+- [pyenv](https://github.com/pyenv/pyenv) with Python 3.12
+- [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv)
+- [conda-miniforge](https://github.com/conda-forge/miniforge)
+- [poetry](https://github.com/python-poetry/poetry)
+- [nvm](https://github.com/nvm-sh/nvm) with npm and Node 20
+- [cargo](https://github.com/rust-lang/cargo) with latest Rust
 - [fzf](https://github.com/junegunn/fzf)
+- [ranger](https://github.com/ranger/ranger)
 - [delta](https://github.com/dandavison/delta)
 - [eza](https://github.com/eza-community/eza)
 - [lazygit](https://github.com/jesseduffield/lazygit)
 - [lazydocker](https://github.com/jesseduffield/lazydocker)
-- [ranger](https://github.com/ranger/ranger)
-- [pyenv](https://github.com/pyenv/pyenv)
-  - with Python 3.12
-- [nvm](https://github.com/nvm-sh/nvm)
-  - with Node 20
-- [cargo](https://github.com/rust-lang/cargo)
-  - with latest Rust
 
 ## Run dev environment with docker
 

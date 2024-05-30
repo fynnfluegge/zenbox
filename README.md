@@ -4,20 +4,23 @@
   <img width="640" src="https://github.com/fynnfluegge/zendevenv/assets/16321871/4ea2ecb5-d186-4b54-bef3-879b40fc7587">
 </div>
 
-## Tools
+
+
+## Preinstalled tools
 
 - [tmux](https://github.com/tmux/tmux)
   - [tpm](https://github.com/tmux-plugins/tpm)
   - [tmux-resurrect](https://github.com/tmux-plugins/tmux-resurrect)
   - [tmux-vim-navigator](https://github.com/christoomey/vim-tmux-navigator)
 - [neovim](https://github.com/neovim/neovim)
+  - [nvim.config](https://github.com/fynnfluegge/nvim.config) 
 - [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
+- [nvm](https://github.com/nvm-sh/nvm) with npm and Node 20
+- [cargo](https://github.com/rust-lang/cargo) with latest Rust
 - [pyenv](https://github.com/pyenv/pyenv) with Python 3.12
 - [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv)
 - [conda-miniforge](https://github.com/conda-forge/miniforge)
 - [poetry](https://github.com/python-poetry/poetry)
-- [nvm](https://github.com/nvm-sh/nvm) with npm and Node 20
-- [cargo](https://github.com/rust-lang/cargo) with latest Rust
 - [fzf](https://github.com/junegunn/fzf)
 - [ranger](https://github.com/ranger/ranger)
 - [delta](https://github.com/dandavison/delta)

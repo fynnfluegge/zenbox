@@ -26,7 +26,8 @@ RUN apt-get update && apt-get install -y \
     neovim \
     zsh \
     jq \
-    bat
+    bat \
+    ripgrep
 
 RUN apt-get update && apt-get install -y \
     libssl-dev \

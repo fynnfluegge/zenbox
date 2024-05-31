@@ -1,10 +1,12 @@
-## A zenful dev environment with tools for 10x productivity
-
 <div align="center">
-  <img width="640" src="https://github.com/fynnfluegge/zendevenv/assets/16321871/4ea2ecb5-d186-4b54-bef3-879b40fc7587">
+  
+# A zenful dev environment with tools for 10x productivity
+  
+<img width="640" src="https://github.com/fynnfluegge/zendevenv/assets/16321871/4ea2ecb5-d186-4b54-bef3-879b40fc7587">
+  
+[![Publish Docker image](https://github.com/fynnfluegge/zenbox/actions/workflows/publish-docker-image.yml/badge.svg)](https://github.com/fynnfluegge/zenbox/actions/workflows/publish-docker-image.yml)
+  
 </div>
-
-
 
 ## Preinstalled tools
 
@@ -30,20 +32,27 @@
 
 ## Run dev environment with docker
 
-#### Build docker image
+#### Download docker image
 
 ```
-docker build -t my-dev-environment .
+docker image pull fynnfluegge/zenbox:latest
+```
+
+#### Build docker image from source
+
+```
+git clone https://github.com/fynnfluegge/zenbox
+cd zenbox && docker build -t fynnfluegge/zenbox:latest .
 ```
 
 #### Start docker container
 
 ```
-docker run --privileged -it -p 2375:2375 --name dev-container my-dev-environment
+docker run --privileged -it -p 2375:2375 --name zenbox fynnfluegge/zenbox:latest
 ```
 
 #### Reconnect to docker container
 
 ```
-docker restart dev-container && docker attach dev-container
+docker restart zenbox && docker attach zenbox
 ```

@@ -110,3 +110,5 @@ unset __conda_setup
 #   done
 #   return 1
 # }
+
+[ -f $HOME/.zcustomaliases ] && source $HOME/.zcustomaliases

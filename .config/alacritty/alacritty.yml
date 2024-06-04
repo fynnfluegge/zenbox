@@ -21,3 +21,14 @@ key_bindings:
   - { key: Left, mods: Command, chars: "\x1bOH", mode: AppCursor } # Home
   - { key: Right, mods: Command, chars: "\x1bOF", mode: AppCursor } # End
   - { key: Back, mods: Command, chars: "\x15" } # Delete line
+  - { key: A, mods: Alt, chars: "\x1ba" }
+  - { key: B, mods: Alt, chars: "\x1bb" }
+  - { key: C, mods: Alt, chars: "\x1bc" }
+  - { key: D, mods: Alt, chars: "\x1bd" }
+  - { key: E, mods: Alt, chars: "\x1be" }
+  - { key: F, mods: Alt, chars: "\x1bf" }
+  - { key: G, mods: Alt, chars: "\x1bg" }
+  - { key: H, mods: Alt, chars: "\x1bh" }
+  - { key: I, mods: Alt, chars: "\x1bi" }
+  - { key: J, mods: Alt, chars: "\x1bj" }
+  - { key: K, mods: Alt, chars: "\x1bk" }

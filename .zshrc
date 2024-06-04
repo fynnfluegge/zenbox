@@ -16,6 +16,7 @@ alias rrconfig="f(){ rr --selectfile=$HOME/.config/ranger };f"
 alias fb=$HOME/.scripts/fzfbookmarks.sh
 alias ls="eza --icons=always"
 alias ta="tmux attach -t"
+alias tmux-restore="mkdir -p $HOME/.tmux/resurrect && cd $HOME/.tmux/resurrect && ln -sf $HOME/.local/share/tmux/resurrect/last last && tmux new"
 
 export ZSH="$HOME/.zsh"
 export ZSH_CUSTOM="$ZSH/custom"

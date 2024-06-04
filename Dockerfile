@@ -30,6 +30,7 @@ RUN apt-get update && apt-get install -y \
     ripgrep
 
 RUN apt-get update && apt-get install -y \
+    locales-all \
     libssl-dev \
     zlib1g-dev \
     libbz2-dev \
@@ -52,6 +53,10 @@ RUN apt-get update && apt-get install -y \
     ca-certificates \
     gnupg \
     lsb-release
+
+ENV LC_ALL en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US.UTF-8
 
 # Change the default shell to zsh for the root user
 RUN chsh -s $(which zsh)
@@ -123,6 +128,7 @@ RUN echo '#!/bin/bash\n' > install_plugins.sh && \
 # Run and delete the tmux plugin install script
 RUN ./install_plugins.sh
 RUN rm ./install_plugins.sh
+RUN rm $HOME/.tmux.conf
 # ----------------------------------------------- #
 
 # Install Python and set the global version to $PYTHON_VERSION

@@ -5,19 +5,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# aliases
-alias vz="nvim ~/.zshrc"
-alias sz="source ~/.zshrc"
-alias nv="nvim"
-# alias rr="pipx run --spec ranger-fm ranger"
-alias rr="ranger"
-alias rrzsh="f(){ rr --selectfile=$HOME/.zsh/.git };f"
-alias rrconfig="f(){ rr --selectfile=$HOME/.config/ranger };f"
-alias fb=$HOME/.scripts/fzfbookmarks.sh
-alias ls="eza --icons=always"
-alias ta="tmux attach -t"
-alias tl='tmux list-sessions'
-alias tn="tmux new -s $(pwd | sed 's/.*\///g')"
 
 export ZSH="$HOME/.zsh"
 export ZSH_CUSTOM="$ZSH/custom"
@@ -88,22 +75,6 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 # Enable zoxide shell
 eval "$(zoxide init zsh)"
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$("$HOME/.pyenv/versions/miniconda3-3.11-23.5.2-0/bin/conda" "shell.zsh" "hook" 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "$HOME/.pyenv/versions/miniconda3-3.11-23.5.2-0/etc/profile.d/conda.sh" ]; then
-        . "$HOME/.pyenv/versions/miniconda3-3.11-23.5.2-0/etc/profile.d/conda.sh"
-    else
-        export PATH="$HOME/.pyenv/versions/miniconda3-3.11-23.5.2-0/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-
 # only show last dir in prompt
 # function zsh_directory_name() {
 #   emulate -L zsh
@@ -117,5 +88,19 @@ unset __conda_setup
 #   done
 #   return 1
 # }
+
+# aliases
+alias vz="nvim ~/.zshrc"
+alias sz="source ~/.zshrc"
+alias nv="nvim"
+# alias rr="pipx run --spec ranger-fm ranger"
+alias rr="ranger"
+alias rrzsh="f(){ rr --selectfile=$HOME/.zsh/.git };f"
+alias rrconfig="f(){ rr --selectfile=$HOME/.config/ranger };f"
+alias fb=$HOME/.scripts/fzfbookmarks.sh
+alias ls="eza --icons=always"
+alias ta="tmux attach -t"
+alias tl='tmux list-sessions'
+alias tn='tmux new-session -s $(basename "$PWD")'
 
 [ -f $HOME/.zcustomaliases ] && source $HOME/.zcustomaliases

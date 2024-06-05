@@ -22,7 +22,6 @@ RUN apt-get update && apt-get install -y \
 
 RUN apt-get update && apt-get install -y \
     tmux \
-    fzf \
     neovim \
     zsh \
     jq \
@@ -43,8 +42,6 @@ RUN apt-get update && apt-get install -y \
     tk-dev \
     libffi-dev \
     liblzma-dev \
-    python3-openssl \
-    python3-pip \
     pipx
 
 RUN apt-get update && apt-get install -y \
@@ -61,6 +58,9 @@ ENV LANGUAGE en_US.UTF-8
 # Change the default shell to zsh for the root user
 RUN chsh -s $(which zsh)
 SHELL ["/bin/zsh", "-c"]
+
+# ------------------- Install fzf ------------------- #
+RUN git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf && $HOME/.fzf/install
 
 # ------------------- Install Docker ------------------- #
 # Add Docker’s official GPG key and set up the stable repository
@@ -95,7 +95,7 @@ COPY .scripts $HOME/.scripts
 COPY .zshrc $HOME/.zshrc
 COPY .zprofile $HOME/.zprofile
 
-RUN +chmod +x $HOME/.scripts/*
+RUN chmod +x $HOME/.scripts/*
 
 # ------------------- Install pyenv ------------------- #
 RUN curl https://pyenv.run | zsh
@@ -160,7 +160,7 @@ RUN /bin/zsh -c "source /opt/conda/bin/activate && conda update -n base -c conda
 RUN source $HOME/.zprofile && nvm install $NODE_VERSION && nvm use $NODE_VERSION
 
 # Ensure pip is installed and upgrade it
-RUN pip3 install --upgrade pip --break-system-packages
+RUN source $HOME/.zprofile && pip3 install --upgrade pip --break-system-packages
 
 # Ensure pipx is installed
 RUN pipx ensurepath
@@ -197,6 +197,18 @@ RUN source $HOME/.cargo/env \
     && cargo build --release \
     && cp target/release/delta /usr/local/bin/ \
     && rm -rf /tmp/delta
+
+RUN touch $HOME/.gitconfig && \
+    echo '[core]' >> $HOME/.gitconfig && \
+    echo '    pager = delta' >> $HOME/.gitconfig && \
+    echo '[interactive]' >> $HOME/.gitconfig && \
+    echo '    diffFilter = delta --color-only' >> $HOME/.gitconfig && \
+    echo '[delta]' >> $HOME/.gitconfig && \
+    echo '    navigate = true' >> $HOME/.gitconfig && \
+    echo '[merge]' >> $HOME/.gitconfig && \
+    echo '    conflictStyle = diff3' >> $HOME/.gitconfig && \
+    echo '[diff]' >> $HOME/.gitconfig && \
+    echo '    colorMoved = default' >> $HOME/.gitconfig
 
 # ------------------- Install LazyDocker ------------------- #
 RUN LAZYDOCKER_VERSION=$(curl -s https://api.github.com/repos/jesseduffield/lazydocker/releases/latest | \

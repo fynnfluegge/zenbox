@@ -95,6 +95,8 @@ COPY .scripts $HOME/.scripts
 COPY .zshrc $HOME/.zshrc
 COPY .zprofile $HOME/.zprofile
 
+RUN +chmod +x $HOME/.scripts/*
+
 # ------------------- Install pyenv ------------------- #
 RUN curl https://pyenv.run | zsh
 # Check if pyenv-virtualenv is installed and install if not
@@ -213,6 +215,9 @@ RUN LAZYGIT_VERSION=$(curl -s https://api.github.com/repos/jesseduffield/lazygit
     && tar -xf lazygit.tar.gz \
     && mv lazygit /usr/local/bin/ \
     && rm lazygit.tar.gz
+
+# ------------------- Install zoxide ------------------- #
+RUN curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 
 # Clean up to reduce image size
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*

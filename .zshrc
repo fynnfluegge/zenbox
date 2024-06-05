@@ -16,7 +16,8 @@ alias rrconfig="f(){ rr --selectfile=$HOME/.config/ranger };f"
 alias fb=$HOME/.scripts/fzfbookmarks.sh
 alias ls="eza --icons=always"
 alias ta="tmux attach -t"
-alias tmux-restore="mkdir -p $HOME/.tmux/resurrect && cd $HOME/.tmux/resurrect && ln -sf $HOME/.local/share/tmux/resurrect/last last && tmux new"
+alias tl='tmux list-sessions'
+alias tn="tmux new -s $(pwd | sed 's/.*\///g')"
 
 export ZSH="$HOME/.zsh"
 export ZSH_CUSTOM="$ZSH/custom"
@@ -80,8 +81,12 @@ source $ZSH/oh-my-zsh.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f $HOME/.p10k.zsh ]] || source $HOME/.p10k.zsh
 
+# Enable fzf shell
 [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+
+# Enable zoxide shell
+eval "$(zoxide init zsh)"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

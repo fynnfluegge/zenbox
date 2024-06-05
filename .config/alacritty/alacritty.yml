@@ -4,6 +4,7 @@ import:
 window:
   startup_mode: Maximized
   opacity: 1.0
+  decorations: buttonless
 
 colors:
   primary:

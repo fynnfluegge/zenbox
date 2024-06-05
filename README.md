@@ -15,7 +15,7 @@
   - [tmux-resurrect](https://github.com/tmux-plugins/tmux-resurrect)
   - [tmux-vim-navigator](https://github.com/christoomey/vim-tmux-navigator)
 - [neovim](https://github.com/neovim/neovim)
-  - [nvim.config](https://github.com/fynnfluegge/nvim.config) 
+  - [nvim.config](https://github.com/fynnfluegge/nvim.config)
 - [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
 - [nvm](https://github.com/nvm-sh/nvm) with npm and Node 20
 - [cargo](https://github.com/rust-lang/cargo) with latest Rust
@@ -27,6 +27,7 @@
 - [ranger](https://github.com/ranger/ranger)
 - [delta](https://github.com/dandavison/delta)
 - [eza](https://github.com/eza-community/eza)
+- [zoxide](https://github.com/ajeetdsouza/zoxide)
 - [lazygit](https://github.com/jesseduffield/lazygit)
 - [lazydocker](https://github.com/jesseduffield/lazydocker)
 

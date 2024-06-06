@@ -14,6 +14,7 @@
   - [tpm](https://github.com/tmux-plugins/tpm)
   - [tmux-resurrect](https://github.com/tmux-plugins/tmux-resurrect)
   - [tmux-vim-navigator](https://github.com/christoomey/vim-tmux-navigator)
+  - [tmux-yank](https://github.com/tmux-plugins/tmux-yank)
 - [neovim](https://github.com/neovim/neovim)
   - [nvim.config](https://github.com/fynnfluegge/nvim.config)
 - [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)

@@ -26,6 +26,7 @@ RUN apt-get update && apt-get install -y \
     zsh \
     jq \
     bat \
+    fd-find \
     ripgrep
 
 RUN apt-get update && apt-get install -y \
@@ -59,8 +60,14 @@ ENV LANGUAGE en_US.UTF-8
 RUN chsh -s $(which zsh)
 SHELL ["/bin/zsh", "-c"]
 
+RUN mkdir -p $HOME/.local/bin
+
 # ------------------- Install fzf ------------------- #
 RUN git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf && $HOME/.fzf/install
+
+# create a symbolic link to bat and fd
+RUN ln -s /usr/bin/batcat $HOME/.local/bin/bat
+RUN ln -s /usr/bin/fdfind $HOME/.local/bin/fd
 
 # ------------------- Install Docker ------------------- #
 # Add Docker’s official GPG key and set up the stable repository

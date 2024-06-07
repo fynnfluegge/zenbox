@@ -22,6 +22,9 @@ key_bindings:
   - { key: Left, mods: Command, chars: "\x1bOH", mode: AppCursor } # Home
   - { key: Right, mods: Command, chars: "\x1bOF", mode: AppCursor } # End
   - { key: Back, mods: Command, chars: "\x15" } # Delete line
+  - { key: M, mods: Control|Command, action: ToggleFullscreen }
+  - { key: Plus, mods: Command, action: IncreaseFontSize }
+  - { key: Minus, mods: Command, action: DecreaseFontSize }
   - { key: A, mods: Alt, chars: "\x1ba" }
   - { key: B, mods: Alt, chars: "\x1bb" }
   - { key: C, mods: Alt, chars: "\x1bc" }

@@ -23,13 +23,11 @@ export EDITOR=nvim;
 P10K_PATH="$HOME/.p10k.zsh"
 # Check if the p10k.zsh file exists
 if [[ -f $P10K_PATH ]]; then
-    # If the file exists, source it
     source $P10K_PATH
-    # Set the ZSH theme to powerlevel10k
     ZSH_THEME="powerlevel10k/powerlevel10k"
 else
-    # If the file does not exist, set a different theme
-    ZSH_THEME="awesomepanda"
+    # Enable starship shell
+    eval "$(starship init zsh)"
 fi
 
 typeset -A ZSH_HIGHLIGHT_STYLES
@@ -59,14 +57,11 @@ plugins=(
  zsh-syntax-highlighting
  zsh-autosuggestions
  conda-zsh-completion
- zsh-vi-mode
+ # zsh-vi-mode
 )
 # ----------------- #
 
 source $ZSH/oh-my-zsh.sh
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f $HOME/.p10k.zsh ]] || source $HOME/.p10k.zsh
 
 # Enable fzf shell
 [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh

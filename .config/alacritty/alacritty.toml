@@ -1,0 +1,115 @@
+import = ["~/.config/alacritty/themes/themes/github_dark.toml"]
+
+[window]
+startup_mode = "Maximized"
+opacity = 1
+decorations = "buttonless"
+
+[colors.primary]
+background = "#1a1f2b"
+
+[colors.cursor]
+cursor = "#33ee33"
+
+[font]
+size = 14
+
+[font.normal]
+family = "Hack Nerd Font"
+
+[[keyboard.bindings]]
+key = "Right"
+mods = "Alt"
+chars = "\u001bF"
+
+[[keyboard.bindings]]
+key = "Left"
+mods = "Alt"
+chars = "\u001bB"
+
+[[keyboard.bindings]]
+key = "Left"
+mods = "Command"
+chars = "\u001bOH"
+mode = "AppCursor"
+
+[[keyboard.bindings]]
+key = "Right"
+mods = "Command"
+chars = "\u001bOF"
+mode = "AppCursor"
+
+[[keyboard.bindings]]
+key = "Back"
+mods = "Command"
+chars = "\u0015"
+
+[[keyboard.bindings]]
+key = "M"
+mods = "Control|Command"
+action = "ToggleFullscreen"
+
+[[keyboard.bindings]]
+key = "Plus"
+mods = "Command"
+action = "IncreaseFontSize"
+
+[[keyboard.bindings]]
+key = "Minus"
+mods = "Command"
+action = "DecreaseFontSize"
+
+[[keyboard.bindings]]
+key = "A"
+mods = "Alt"
+chars = "\u001ba"
+
+[[keyboard.bindings]]
+key = "B"
+mods = "Alt"
+chars = "\u001bb"
+
+[[keyboard.bindings]]
+key = "C"
+mods = "Alt"
+chars = "\u001bc"
+
+[[keyboard.bindings]]
+key = "D"
+mods = "Alt"
+chars = "\u001bd"
+
+[[keyboard.bindings]]
+key = "E"
+mods = "Alt"
+chars = "\u001be"
+
+[[keyboard.bindings]]
+key = "F"
+mods = "Alt"
+chars = "\u001bf"
+
+[[keyboard.bindings]]
+key = "G"
+mods = "Alt"
+chars = "\u001bg"
+
+[[keyboard.bindings]]
+key = "H"
+mods = "Alt"
+chars = "\u001bh"
+
+[[keyboard.bindings]]
+key = "I"
+mods = "Alt"
+chars = "\u001bi"
+
+[[keyboard.bindings]]
+key = "J"
+mods = "Alt"
+chars = "\u001bj"
+
+[[keyboard.bindings]]
+key = "K"
+mods = "Alt"
+chars = "\u001bk"

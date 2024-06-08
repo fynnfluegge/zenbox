@@ -29,6 +29,7 @@
 - [delta](https://github.com/dandavison/delta)
 - [eza](https://github.com/eza-community/eza)
 - [zoxide](https://github.com/ajeetdsouza/zoxide)
+- [tldr](https://github.com/tldr-pages/tldr)
 - [lazygit](https://github.com/jesseduffield/lazygit)
 - [lazydocker](https://github.com/jesseduffield/lazydocker)
 

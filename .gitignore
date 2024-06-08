@@ -17,6 +17,7 @@
 !.config/alacritty
 .config/alacritty/*
 !.config/alacritty/alacritty.yml
+!.config/alacritty/alacritty.toml
 !.config/alacritty/themes
 .config/alacritty/themes/*
 !.config/alacritty/themes/themes

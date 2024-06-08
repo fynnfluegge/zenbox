@@ -96,6 +96,9 @@ RUN git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUS
 RUN git clone https://github.com/conda-incubator/conda-zsh-completion ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/conda-zsh-completion
 RUN git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH_CUSTOM/plugins/zsh-vi-mode
 
+# Install starship prompt
+RUN curl -fsSL https://starship.rs/install.sh | bash -s -- -y
+
 # Add dotfiles
 COPY .config $HOME/.config
 COPY .scripts $HOME/.scripts
@@ -168,6 +171,9 @@ RUN source $HOME/.zprofile && nvm install $NODE_VERSION && nvm use $NODE_VERSION
 
 # Ensure pip is installed and upgrade it
 RUN source $HOME/.zprofile && pip3 install --upgrade pip --break-system-packages
+
+# Install tldr
+RUN source $HOME/.zprofile && pip3 install tldr
 
 # Ensure pipx is installed
 RUN pipx ensurepath

@@ -291,6 +291,8 @@
 	</dict>
 	<key>HapticFeedbackForEsc</key>
 	<false/>
+	<key>HideMenuBarInFullscreen</key>
+	<false/>
 	<key>Hotkey</key>
 	<false/>
 	<key>HotkeyChar</key>
@@ -571,6 +573,8 @@
 				<key>Red Component</key>
 				<real>0.70213186740875244</real>
 			</dict>
+			<key>Cursor Shadow</key>
+			<true/>
 			<key>Cursor Text Color</key>
 			<dict>
 				<key>Alpha Component</key>
@@ -584,10 +588,14 @@
 				<key>Red Component</key>
 				<real>0.032308312132954597</real>
 			</dict>
+			<key>Cursor Type</key>
+			<integer>2</integer>
 			<key>Custom Command</key>
 			<string>No</string>
 			<key>Custom Directory</key>
 			<string>No</string>
+			<key>Custom Locale</key>
+			<string>en_US.UTF-8</string>
 			<key>Default Bookmark</key>
 			<string>No</string>
 			<key>Description</key>
@@ -1123,6 +1131,8 @@
 			</dict>
 			<key>Send Code When Idle</key>
 			<false/>
+			<key>Set Local Environment Vars</key>
+			<integer>2</integer>
 			<key>Shortcut</key>
 			<string></string>
 			<key>Show Mark Indicators</key>
@@ -1208,12 +1218,16 @@
 	<false/>
 	<key>SplitPaneDimmingAmount</key>
 	<real>0.39024002399850399</real>
+	<key>StatusBarPosition</key>
+	<integer>0</integer>
 	<key>SwitchPaneModifier</key>
 	<integer>6</integer>
 	<key>SwitchWindowModifier</key>
 	<integer>9</integer>
 	<key>TabStyleWithAutomaticOption</key>
 	<integer>6</integer>
+	<key>TabViewType</key>
+	<integer>1</integer>
 	<key>VisualIndicatorForEsc</key>
 	<false/>
 	<key>findMode_iTerm</key>

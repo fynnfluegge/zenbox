@@ -3,7 +3,10 @@ import = ["~/.config/alacritty/themes/themes/github_dark.toml"]
 [window]
 startup_mode = "Maximized"
 opacity = 1
+blur = true
 decorations = "buttonless"
+padding.x = 4
+padding.y = 4
 
 [colors.primary]
 background = "#1a1f2b"

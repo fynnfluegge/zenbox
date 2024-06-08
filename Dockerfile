@@ -97,7 +97,7 @@ RUN git clone https://github.com/conda-incubator/conda-zsh-completion ${ZSH_CUST
 RUN git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH_CUSTOM/plugins/zsh-vi-mode
 
 # Install starship prompt
-RUN curl -fsSL https://starship.rs/install.sh | bash -s -- -y
+RUN curl -fsSL https://starship.rs/install.sh | sh -s -- -y
 
 # Add dotfiles
 COPY .config $HOME/.config

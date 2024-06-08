@@ -5,6 +5,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+KEYTIMEOUT=100
 
 export ZSH="$HOME/.zsh"
 export ZSH_CUSTOM="$ZSH/custom"
@@ -27,7 +28,8 @@ if [[ -f $P10K_PATH ]]; then
     ZSH_THEME="powerlevel10k/powerlevel10k"
 else
     # Enable starship shell
-    eval "$(starship init zsh)"
+    # eval "$(starship init zsh)"
+    ZSH_THEME="awesomepanda"
 fi
 
 typeset -A ZSH_HIGHLIGHT_STYLES
@@ -66,6 +68,7 @@ source $ZSH/oh-my-zsh.sh
 # Enable fzf shell
 [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+[ -f $HOME/.fzf/fzf-git.sh/fzf-git.sh ] && source $HOME/.fzf/fzf-git.sh/fzf-git.sh
 
 # Enable zoxide shell
 eval "$(zoxide init zsh)"

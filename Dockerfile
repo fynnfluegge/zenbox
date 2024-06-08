@@ -64,6 +64,8 @@ RUN mkdir -p $HOME/.local/bin
 
 # ------------------- Install fzf ------------------- #
 RUN git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf && $HOME/.fzf/install
+# Download fzf-git
+RUN cd $HOME/.fzf && git clone https://github.com/junegunn/fzf-git.sh
 
 # create a symbolic link to bat and fd
 RUN ln -s /usr/bin/batcat $HOME/.local/bin/bat

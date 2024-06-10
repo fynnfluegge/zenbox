@@ -6,8 +6,9 @@ window:
   opacity: 1.0
   blur: true
   decorations: buttonless
-  padding.x: 4
-  padding.y: 4
+  padding:
+    x: 4
+    y: 4
 
 colors:
   primary:

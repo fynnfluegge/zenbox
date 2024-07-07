@@ -88,7 +88,7 @@ RUN apt-get update && apt-get install -y \
 # -------------------------------------------------------- #
 
 # Clone Neovim configuration from GitHub
-RUN git clone https://github.com/fynnfluegge/nvim.config $HOME/.config/nvim
+RUN git clone https://github.com/fynnfluegge/astronvim.config $HOME/.config/nvim
 
 # ------------------- Install Oh My Zsh ------------------- #
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"

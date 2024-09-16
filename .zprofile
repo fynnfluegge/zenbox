@@ -3,6 +3,7 @@
 
 # MacPorts Installer addition on 2023-06-15_at_11:59:04: adding an appropriate PATH variable for use with MacPorts.
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+export XDG_CONFIG_HOME="$HOME/.config"
 
 # Suggested by error message:
 # Found pyenv, but it is badly configured (missing pyenv shims in $PATH). pyenv might not

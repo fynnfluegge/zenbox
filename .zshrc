@@ -100,5 +100,6 @@ alias ls="eza --icons=always"
 alias ta="tmux attach -t"
 alias tl='tmux list-sessions'
 alias tn='tmux new-session -s $(basename "$PWD")'
+alias gitmergeconflicts="git mergetool --no-prompt --tool=vimdiff"
 
 [ -f $HOME/.zcustomaliases ] && source $HOME/.zcustomaliases

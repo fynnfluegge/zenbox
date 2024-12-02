@@ -50,3 +50,5 @@ if [ -f "$HOME/miniforge3/etc/profile.d/mamba.sh" ]; then
 fi
 # <<< conda initialize <<<
 
+# Luarocks
+export PATH=$PATH:~/.luarocks/bin

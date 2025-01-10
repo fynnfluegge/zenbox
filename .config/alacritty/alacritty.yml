@@ -5,7 +5,7 @@ window:
   startup_mode: Maximized
   opacity: 1.0
   blur: true
-  decorations: buttonless
+  decorations: full
   padding:
     x: 4
     y: 4

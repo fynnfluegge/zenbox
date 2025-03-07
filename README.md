@@ -59,3 +59,11 @@ docker run --privileged -it -p 2375:2375 --name zenbox fynnfluegge/zenbox:latest
 ```
 docker restart zenbox && docker attach zenbox
 ```
+
+#### FAQ
+
+##### How to hold a key and have it repeat in VSCode?
+
+```
+defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+```

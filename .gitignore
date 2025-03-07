@@ -41,3 +41,13 @@
 .scripts/*
 !.scripts/fzfbookmarks.sh
 !.scripts/README.md
+
+!Library
+Library/*
+!Library/Application\ Support
+Library/Application\ Support/*
+!Library/Application\ Support/Code
+Library/Application\ Support/Code/*
+!Library/Application\ Support/Code/User
+Library/Application\ Support/Code/User/*
+!Library/Application\ Support/Code/User/settings.json

@@ -1,7 +1,7 @@
 {
   "workbench.colorTheme": "Catppuccin Macchiato",
   "workbench.activityBar.location": "hidden",
-  "workbench.editor.showTabs": "single",
+  "workbench.editor.showTabs": "multiple",
   "workbench.statusBar.visible": false,
   "workbench.tips.enabled": false,
   "editor.minimap.enabled": false,
@@ -121,5 +121,23 @@
   "files.autoSave": "afterDelay",
   "update.mode": "none",
   "extensions.ignoreRecommendations": true,
-  "workbench.startupEditor": "none"
+  "workbench.startupEditor": "none",
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "H"
+      ],
+      "commands": [
+        "workbench.action.previousEditor"
+      ]
+    },
+    {
+      "before": [
+        "L"
+      ],
+      "commands": [
+        "workbench.action.nextEditor"
+      ]
+    }
+  ]
 }

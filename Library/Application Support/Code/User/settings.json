@@ -125,7 +125,7 @@
   "vim.normalModeKeyBindingsNonRecursive": [
     {
       "before": [
-        "H"
+        "shift+h"
       ],
       "commands": [
         "workbench.action.previousEditor"
@@ -133,7 +133,7 @@
     },
     {
       "before": [
-        "L"
+        "shift+l"
       ],
       "commands": [
         "workbench.action.nextEditor"

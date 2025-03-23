@@ -46,8 +46,7 @@
     ".title.show-file-icons .label-container .monaco-icon-label.file-icon": "justify-content: center; padding: 0 !important",
     ".title .monaco-icon-label:after": "margin-right: 0",
     ".monaco-workbench .part.editor > .content .editor-group-container > .title > .label-container > .title-label": "padding-left: 60px",
-    ".title .monaco-icon-label.file-icon": "margin: 0 60px",
-    ".monaco-editor .cursors-layer .cursor": "background-image: linear-gradient(135deg, #ffaffc 10%, #DA70D6 100%)"
+    ".title .monaco-icon-label.file-icon": "margin: 0 60px"
   },
   "custom-ui-style.font.sansSerif": "Dank Mono",
   "editor.multiCursorModifier": "ctrlCmd",
@@ -76,7 +75,7 @@
   "editor.fontFamily": "Dank Mono",
   "editor.fontSize": 14,
   "editor.fontLigatures": true,
-  "editor.lineHeight": 2,
+  "editor.lineHeight": 1.2,
   "editor.tokenColorCustomizations": {
     "textMateRules": [
       {
@@ -117,27 +116,36 @@
   "editor.suggestOnTriggerCharacters": false,
   "editor.tabCompletion": "on",
   "editor.snippetSuggestions": "top",
+  "editor.cursorSmoothCaretAnimation": true,
+  "editor.renderLineHighlight": "all",
+  "workbench.colorCustomizations": {
+    "editorCursor.foreground": "#39FF14",
+    "terminalCursor.foreground": "#39FF14"
+  },
   "emmet.triggerExpansionOnTab": true,
   "files.autoSave": "afterDelay",
   "update.mode": "none",
   "extensions.ignoreRecommendations": true,
   "workbench.startupEditor": "none",
+  "vim.cursorStylePerMode": {
+    "insert": "line-thin",
+    "normal": "block",
+    "replace": "block",
+    "visual": "block",
+    "visualline": "block",
+    "visualblock": "block"
+  },
   "vim.normalModeKeyBindingsNonRecursive": [
     {
-      "before": [
-        "shift+h"
-      ],
-      "commands": [
-        "workbench.action.previousEditor"
-      ]
+      "before": ["shift+h"],
+      "commands": ["workbench.action.previousEditor"]
     },
     {
-      "before": [
-        "shift+l"
-      ],
-      "commands": [
-        "workbench.action.nextEditor"
-      ]
+      "before": ["shift+l"],
+      "commands": ["workbench.action.nextEditor"]
     }
-  ]
+  ],
+  "vim.highlightedyank.enable": true,
+  "vim.highlightedyank.color": "#3e4352",
+  "vim.useSystemClipboard": true
 }

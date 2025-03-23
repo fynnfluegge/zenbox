@@ -70,6 +70,9 @@ source $ZSH/oh-my-zsh.sh
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 [ -f $HOME/.fzf/fzf-git.sh/fzf-git.sh ] && source $HOME/.fzf/fzf-git.sh/fzf-git.sh
 
+# Enable open vs code from terminal
+code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
+
 # Enable zoxide shell
 eval "$(zoxide init zsh)"
 

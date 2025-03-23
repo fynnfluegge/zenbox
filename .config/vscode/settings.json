@@ -149,5 +149,6 @@
   "vim.highlightedyank.enable": true,
   "vim.highlightedyank.color": "#3e4352",
   "vim.useSystemClipboard": true,
-  "vim.scrolloff": 5
+  "vim.scrolloff": 5,
+  "accessibility.voice.keywordActivation": "chatInView"
 }

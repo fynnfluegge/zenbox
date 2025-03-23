@@ -147,5 +147,7 @@
   ],
   "vim.highlightedyank.enable": true,
   "vim.highlightedyank.color": "#3e4352",
-  "vim.useSystemClipboard": true
+  "vim.useSystemClipboard": true,
+  "vim.scrolloff": 5,
+  "editor.cursorSurroundingLines": 5
 }

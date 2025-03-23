@@ -14,6 +14,11 @@
 .config/tmux/*
 !.config/tmux/tmux.conf
 
+!.config/vscode
+.config/vscode/*
+!.config/vscode/settings.json
+!.config/vscode/keybindings.json
+
 !.config/alacritty
 .config/alacritty/*
 !.config/alacritty/alacritty.yml
@@ -41,14 +46,3 @@
 .scripts/*
 !.scripts/fzfbookmarks.sh
 !.scripts/README.md
-
-!Library
-Library/*
-!Library/Application\ Support
-Library/Application\ Support/*
-!Library/Application\ Support/Code
-Library/Application\ Support/Code/*
-!Library/Application\ Support/Code/User
-Library/Application\ Support/Code/User/*
-!Library/Application\ Support/Code/User/settings.json
-!Library/Application\ Support/Code/User/keybindings.json

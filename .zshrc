@@ -73,6 +73,13 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 # Enable open vs code from terminal
 code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
 
+ln -s \
+  $HOME/.config/vscode/settings.json \
+  $HOME/Library/Application\ Support/Code/User/settings.json
+ln -s \
+  $HOME/.config/vscode/keybindings.json \
+  $HOME/Library/Application\ Support/Code/User/keybindings.json
+
 # Enable zoxide shell
 eval "$(zoxide init zsh)"
 

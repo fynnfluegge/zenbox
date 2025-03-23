@@ -48,7 +48,6 @@
     ".monaco-workbench .part.editor > .content .editor-group-container > .title > .label-container > .title-label": "padding-left: 60px",
     ".title .monaco-icon-label.file-icon": "margin: 0 60px"
   },
-  "custom-ui-style.font.sansSerif": "Dank Mono",
   "editor.multiCursorModifier": "ctrlCmd",
   "editor.cursorBlinking": "solid",
   "editor.cursorStyle": "block",
@@ -72,7 +71,8 @@
       "sideBar.background": "#191521"
     }
   },
-  "editor.fontFamily": "Dank Mono",
+  "editor.fontFamily": "Hack Nerd Font",
+  "terminal.integrated.fontFamily": "Hack Nerd Font",
   "editor.fontSize": 14,
   "editor.fontLigatures": true,
   "editor.lineHeight": 1.2,

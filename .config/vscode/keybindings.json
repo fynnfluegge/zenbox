@@ -170,6 +170,16 @@
     "command": "editor.action.addSelectionToPreviousFindMatch",
     "when": "(vim.mode == 'Normal' || vim.mode == 'Visual') && (editorTextFocus || !inputFocus)"
   },
+  {
+    "key": "space /",
+    "command": "editor.action.commentLine",
+    "when": "vim.mode == 'Normal' && editorTextFocus"
+  },
+  {
+    "key": "space \\",
+    "command": "editor.action.blockComment",
+    "when": "vim.mode == 'Normal' && editorTextFocus"
+  },
 
   // File Explorer
   {
@@ -260,5 +270,11 @@
     "key": "space d c",
     "command": "workbench.action.debug.continue",
     "when": "vim.mode == 'Normal' && (editorTextFocus || !inputFocus) && inDebugMode && debugState == 'stopped'"
+  },
+
+  // Random
+  {
+    "key": "F7",
+    "command": "workbench.action.terminal.toggleTerminal",
   }
 ]

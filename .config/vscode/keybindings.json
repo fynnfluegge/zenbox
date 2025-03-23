@@ -152,14 +152,6 @@
     "when": "vim.mode == 'Normal' && (editorTextFocus || !inputFocus)"
   },
   {
-    "key": "space g g",
-    "command": "runCommands",
-    "when": "vim.mode == 'Normal' && (editorTextFocus || !inputFocus)",
-    "args": {
-      "commands": ["workbench.view.scm", "workbench.scm.focus"]
-    }
-  },
-  {
     "key": "ctrl-n",
     "command": "editor.action.addSelectionToNextFindMatch",
     "when": "(vim.mode == 'Normal' || vim.mode == 'Visual') && (editorTextFocus || !inputFocus)"
@@ -173,11 +165,6 @@
   {
     "key": "space /",
     "command": "editor.action.commentLine",
-    "when": "vim.mode == 'Normal' && editorTextFocus"
-  },
-  {
-    "key": "space \\",
-    "command": "editor.action.blockComment",
     "when": "vim.mode == 'Normal' && editorTextFocus"
   },
 
@@ -228,6 +215,15 @@
         "workbench.action.closeOtherEditors"
       ]
     }
+  },
+  {
+    "key": "ctrl-q",
+    "command": "workbench.action.closeGroup",
+  },
+  {
+    "key": "space \\",
+    "command": "workbench.action.splitEditor",
+    "when": "vim.mode == 'Normal' && editorTextFocus"
   },
   {
     "key": "enter",

@@ -2,7 +2,7 @@
   "workbench.colorTheme": "Catppuccin Macchiato",
   "workbench.activityBar.location": "hidden",
   "workbench.editor.showTabs": "multiple",
-  "workbench.statusBar.visible": false,
+  "workbench.statusBar.visible": true,
   "workbench.tips.enabled": false,
   "editor.minimap.enabled": false,
   "breadcrumbs.enabled": false,
@@ -118,6 +118,7 @@
   "editor.snippetSuggestions": "top",
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.renderLineHighlight": "all",
+  "editor.cursorSurroundingLines": 5,
   "workbench.colorCustomizations": {
     "editorCursor.foreground": "#39FF14",
     "terminalCursor.foreground": "#39FF14"
@@ -148,6 +149,5 @@
   "vim.highlightedyank.enable": true,
   "vim.highlightedyank.color": "#3e4352",
   "vim.useSystemClipboard": true,
-  "vim.scrolloff": 5,
-  "editor.cursorSurroundingLines": 5
+  "vim.scrolloff": 5
 }

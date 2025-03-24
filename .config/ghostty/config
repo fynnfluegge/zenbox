@@ -1,0 +1,7 @@
+background = 282c34
+font-family = Hack Nerd Font Regular
+cursor-style = block
+cursor-style-blink = false
+cursor-color=39FF14
+shell-integration-features = no-cursor
+window-decoration = auto

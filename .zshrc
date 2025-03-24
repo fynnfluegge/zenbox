@@ -79,7 +79,6 @@ if [ ! -L "$HOME/Library/Application Support/Code/User/settings.json" ]; then
    $HOME/Library/Application\ Support/Code/User/settings.json
 fi
 if [ ! -L "$HOME/Library/Application Support/Code/User/keybindings.json" ]; then
-  ln -s \
  ln -s \
    $HOME/.config/vscode/keybindings.json \
    $HOME/Library/Application\ Support/Code/User/keybindings.json

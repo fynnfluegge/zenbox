@@ -5,3 +5,4 @@ cursor-style-blink = false
 cursor-color=39FF14
 shell-integration-features = no-cursor
 window-decoration = auto
+theme = catppuccin-macchiato

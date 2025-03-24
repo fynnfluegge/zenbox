@@ -138,12 +138,20 @@
   },
   "vim.normalModeKeyBindingsNonRecursive": [
     {
-      "before": ["shift+h"],
-      "commands": ["workbench.action.previousEditor"]
+      "before": [
+        "shift+h"
+      ],
+      "commands": [
+        "workbench.action.previousEditor"
+      ]
     },
     {
-      "before": ["shift+l"],
-      "commands": ["workbench.action.nextEditor"]
+      "before": [
+        "shift+l"
+      ],
+      "commands": [
+        "workbench.action.nextEditor"
+      ]
     }
   ],
   "vim.highlightedyank.enable": true,

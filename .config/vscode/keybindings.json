@@ -19,8 +19,6 @@
     "command": "workbench.action.focusRightGroup",
     "when": "vim.mode == 'Normal' && (editorTextFocus || !inputFocus)"
   },
-
-  // Navigation
   {
     "key": "ctrl-h",
     "command": "workbench.action.navigateLeft"
@@ -79,8 +77,6 @@
     "command": "workbench.action.splitEditorDown",
     "when": "vim.mode == 'Normal' && (editorTextFocus || !inputFocus)"
   },
-
-  // Coding
   {
     "key": "space l a",
     "command": "editor.action.codeAction",
@@ -157,7 +153,6 @@
     "when": "(vim.mode == 'Normal' || vim.mode == 'Visual') && (editorTextFocus || !inputFocus)"
   },
   {
-  {
     "key": "ctrl-p",
     "command": "editor.action.addSelectionToPreviousFindMatch",
     "when": "(vim.mode == 'Normal' || vim.mode == 'Visual') && (editorTextFocus || !inputFocus)"
@@ -167,8 +162,6 @@
     "command": "editor.action.commentLine",
     "when": "vim.mode == 'Normal' && editorTextFocus"
   },
-
-  // File Explorer
   {
     "key": "r",
     "command": "renameFile",
@@ -218,7 +211,7 @@
   },
   {
     "key": "ctrl-q",
-    "command": "workbench.action.closeGroup",
+    "command": "workbench.action.closeGroup"
   },
   {
     "key": "space \\",
@@ -235,8 +228,6 @@
     "command": "list.toggleExpand",
     "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && explorerResourceIsFolder && !inputFocus"
   },
-
-  // Debug
   {
     "key": "space d a",
     "command": "workbench.action.debug.selectandstart",
@@ -267,10 +258,53 @@
     "command": "workbench.action.debug.continue",
     "when": "vim.mode == 'Normal' && (editorTextFocus || !inputFocus) && inDebugMode && debugState == 'stopped'"
   },
-
-  // Random
   {
     "key": "F7",
-    "command": "workbench.action.terminal.toggleTerminal",
-  }
+    "command": "workbench.action.terminal.toggleTerminal"
+  },
+  {
+    "key": "space shift+p",
+    "command": "workbench.panel.chat.view.copilot.focus",
+    "when": "(vim.mode == 'Normal' && editorTextFocus) || (sideBarFocus && !inputFocus) || !inputFocus"
+  },
+  {
+    "key": "cmd+l",
+    "command": "workbench.action.chat.clear",
+    "when": "inChat",
+  },
+  {
+    "key": "cmd+p",
+    "command": "workbench.action.chat.voiceChatInChatView",
+    "when": "!voiceChatInProgress && chatViewFocus"
+  },
+  {
+    "key": "space p",
+    "command": "workbench.action.openQuickChat.copilot",
+    "when": "(vim.mode == 'Normal' && editorTextFocus) || (sideBarFocus && !inputFocus) || !inputFocus"
+  },
+  {
+    "key": "cmd+p",
+    "command": "workbench.action.chat.startVoiceChat",
+    "when": "!voiceChatInProgress"
+  },
+  {
+    "key": "esc",
+    "command": "workbench.action.chat.stopListeningAndSubmit",
+    "when": "voiceChatInProgress"
+  },
+  {
+    "key": "ctrl+l",
+    "command": "editor.action.inlineSuggest.acceptNextWord",
+    "when": "inlineSuggestionVisible && !editorReadonly"
+  },
+  {
+    "key": "cmd+right",
+    "command": "-editor.action.inlineSuggest.acceptNextWord",
+    "when": "inlineSuggestionVisible && !editorReadonly"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "editor.action.inlineSuggest.acceptNextLine",
+    "when": "inlineSuggestionVisible && !editorReadonly"
+  },
 ]

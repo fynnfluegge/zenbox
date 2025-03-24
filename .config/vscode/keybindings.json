@@ -269,23 +269,8 @@
   },
   {
     "key": "space p",
-    "command": "workbench.action.openQuickChat.copilot",
-    "when": "(vim.mode == 'Normal' && editorTextFocus) || (sideBarFocus && !inputFocus) || !inputFocus"
-  },
-  {
-    "key": "space p",
     "command": "workbench.action.openQuickChat",
     "when": "(vim.mode == 'Normal' && editorTextFocus) || (sideBarFocus && !inputFocus) || !inputFocus"
-  },
-  {
-    "key": "cmd+l",
-    "command": "workbench.action.chat.clear",
-    "when": "inChat"
-  },
-  {
-    "key": "cmd+l",
-    "command": "workbench.action.chat.clearHistory",
-    "when": "inChat"
   },
   {
     "key": "cmd+p",

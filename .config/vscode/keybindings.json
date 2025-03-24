@@ -268,19 +268,29 @@
     "when": "(vim.mode == 'Normal' && editorTextFocus) || (sideBarFocus && !inputFocus) || !inputFocus"
   },
   {
+    "key": "space p",
+    "command": "workbench.action.openQuickChat.copilot",
+    "when": "(vim.mode == 'Normal' && editorTextFocus) || (sideBarFocus && !inputFocus) || !inputFocus"
+  },
+  {
+    "key": "space p",
+    "command": "workbench.action.openQuickChat",
+    "when": "(vim.mode == 'Normal' && editorTextFocus) || (sideBarFocus && !inputFocus) || !inputFocus"
+  },
+  {
     "key": "cmd+l",
     "command": "workbench.action.chat.clear",
-    "when": "inChat",
+    "when": "inChat"
+  },
+  {
+    "key": "cmd+l",
+    "command": "workbench.action.chat.clearHistory",
+    "when": "inChat"
   },
   {
     "key": "cmd+p",
     "command": "workbench.action.chat.voiceChatInChatView",
     "when": "!voiceChatInProgress && chatViewFocus"
-  },
-  {
-    "key": "space p",
-    "command": "workbench.action.openQuickChat.copilot",
-    "when": "(vim.mode == 'Normal' && editorTextFocus) || (sideBarFocus && !inputFocus) || !inputFocus"
   },
   {
     "key": "cmd+p",
@@ -306,5 +316,5 @@
     "key": "ctrl+j",
     "command": "editor.action.inlineSuggest.acceptNextLine",
     "when": "inlineSuggestionVisible && !editorReadonly"
-  },
+  }
 ]

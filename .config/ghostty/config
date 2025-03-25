@@ -1,5 +1,8 @@
 background = 282c34
-font-family = Hack Nerd Font Regular
+font-family = Dank Mono
+font-thicken = true
+font-thicken-strength = 255
+font-size = 16
 cursor-style = block
 cursor-style-blink = false
 cursor-color=39FF14

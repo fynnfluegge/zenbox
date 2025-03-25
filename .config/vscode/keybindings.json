@@ -214,7 +214,7 @@
     "command": "workbench.action.closeGroup"
   },
   {
-    "key": "space \\",
+    "key": "\\",
     "command": "workbench.action.splitEditor",
     "when": "vim.mode == 'Normal' && editorTextFocus"
   },

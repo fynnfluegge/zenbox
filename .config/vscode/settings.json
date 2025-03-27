@@ -120,6 +120,7 @@
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.renderLineHighlight": "all",
   "editor.cursorSurroundingLines": 5,
+  "editor.formatOnSave": true,
   "emmet.triggerExpansionOnTab": true,
   "files.autoSave": "afterDelay",
   "update.mode": "none",
@@ -135,25 +136,23 @@
   },
   "vim.normalModeKeyBindingsNonRecursive": [
     {
-      "before": [
-        "shift+h"
-      ],
-      "commands": [
-        "workbench.action.previousEditor"
-      ]
+      "before": ["shift+h"],
+      "commands": ["workbench.action.previousEditor"]
     },
     {
-      "before": [
-        "shift+l"
-      ],
-      "commands": [
-        "workbench.action.nextEditor"
-      ]
+      "before": ["shift+l"],
+      "commands": ["workbench.action.nextEditor"]
     }
   ],
   "vim.highlightedyank.enable": true,
   "vim.highlightedyank.color": "#3e4352",
   "vim.useSystemClipboard": true,
   "vim.scrolloff": 5,
-  "accessibility.voice.keywordActivation": "chatInView"
+  "accessibility.voice.keywordActivation": "chatInView",
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

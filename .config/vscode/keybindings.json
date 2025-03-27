@@ -163,6 +163,11 @@
     "when": "vim.mode == 'Normal' && editorTextFocus"
   },
   {
+    "key": "space w",
+    "command": "workbench.action.files.save",
+    "when": "vim.mode == 'Normal' && (editorTextFocus || !inputFocus)"
+  },
+  {
     "key": "r",
     "command": "renameFile",
     "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
@@ -214,7 +219,7 @@
     "command": "workbench.action.closeGroup"
   },
   {
-    "key": "space \\",
+    "key": "\\",
     "command": "workbench.action.splitEditor",
     "when": "vim.mode == 'Normal' && editorTextFocus"
   },

@@ -23,6 +23,8 @@ shortcuts=(
     "Show pane numbers (prefix + q)|cmd:display-panes"
     "Move pane left (prefix + {)|cmd:swap-pane -U"
     "Move pane right (prefix + })|cmd:swap-pane -D"
+    "Resize pane left by 12|cmd:resize-pane -L 12"
+    "Resize pane right by 12|cmd:resize-pane -R 12"
     ""
     "Select pane left (h)|info:Press h (no prefix needed)"
     "Select pane down (j)|info:Press j (no prefix needed)"
